@@ -1,0 +1,64 @@
+
+Time Complexity measures the amount of time an algorithm takes to complete as a function of input size 𝑛
+
+Space Complexity measures the amount of memory required by an algorithm relative to 𝑛
+
+
+Common Time Complexities
+---------------------------
+O(1): Constant Time
+    Execution time remains the same regardless of input size.
+    Example: Accessing an array element by index.
+
+
+O(log n): Logarithmic Time
+    Input size reduces by half with each iteration.
+    Example: Binary search.
+
+
+O(n): Linear Time
+    Execution time grows directly proportional to input size.
+    Example: Iterating through a list.
+
+
+O(n log n): Linearithmic Time
+    Common in efficient sorting algorithms like mergesort.
+    Example: sorted() in Python.
+
+
+O(n^2): Quadratic Time
+    Execution time grows with the square of input size (nested loops).
+    Example: Bubble sort.
+
+
+O(2^n): Exponential Time
+    Execution doubles with each additional input (recursive algorithms).
+    Example: Solving the Tower of Hanoi.
+
+
+O(n!): Factorial Time
+    Worst-case algorithms like generating all permutations.
+    Example: Traveling Salesperson Problem (brute force).
+
+
+Space Complexities
+------------------
+
+O(1): Constant Space
+Fixed memory usage regardless of input size.
+Example: Swapping two variables.
+
+
+O(n): Linear Space
+    Memory required grows proportionally with input.
+    Example: Storing a list of n elements.
+
+
+O(log n): Logarithmic Space
+    Space grows with the logarithm of input (recursive stack).
+    Example: Recursive binary search.
+
+
+O(n^2): Quadratic Space
+    Memory required for 2D matrices or nested structures.
+    Example: Matrix multiplication.
