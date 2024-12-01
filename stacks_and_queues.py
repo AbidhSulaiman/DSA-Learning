@@ -76,3 +76,63 @@ stack.display()  # Output: Stack (Top -> Bottom): [20, 10]
         IsEmpty: Check if the queue is empty.
 
 """
+# Queue Implementation
+
+
+from collections import deque
+
+class Queue:
+    def __init__(self):
+        """Initialize an empty queue using deque."""
+        self.queue = deque()
+
+    def enqueue(self, val):
+        """Add an element to the end of the queue."""
+        self.queue.append(val)
+
+    def dequeue(self):
+        """Remove and return the front element of the queue."""
+        if self.is_empty():
+            print("Queue is empty. Nothing to dequeue.")
+            return None
+        return self.queue.popleft()
+
+    def front(self):
+        """Return the front element without removing it."""
+        if self.is_empty():
+            print("Queue is empty.")
+            return None
+        return self.queue[0]
+
+    def rear(self):
+        """Return the rear element without removing it."""
+        if self.is_empty():
+            print("Queue is empty.")
+            return None
+        return self.queue[-1]
+
+    def is_empty(self):
+        """Check if the queue is empty."""
+        return len(self.queue) == 0
+
+    def size(self):
+        """Return the number of elements in the queue."""
+        return len(self.queue)
+
+    def display(self):
+        """Display the queue."""
+        print("Queue (Front -> Rear):", list(self.queue))
+
+
+# Example Usage
+queue = Queue()
+queue.enqueue(10)
+queue.enqueue(20)
+queue.enqueue(30)
+queue.display()  # Output: Queue (Front -> Rear): [10, 20, 30]
+print("Dequeued:", queue.dequeue())  # Output: Dequeued: 10
+print("Front:", queue.front())  # Output: Front: 20
+print("Rear:", queue.rear())  # Output: Rear: 30
+queue.display()  # Output: Queue (Front -> Rear): [20, 30]
+print("Queue size:", queue.size())  # Output: Queue size: 2
+print("Is queue empty?", queue.is_empty())  # Output: Is queue empty? False
