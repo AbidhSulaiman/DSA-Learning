@@ -1,152 +1,190 @@
+"""
+Singly Linked List:
+----------------------
+
+A Singly Linked List is a data structure where each node contains:
+    Data: The value stored in the node.
+    Next Pointer: A reference to the next node in the sequence.
+    
+Advantages:
+    * Dynamic size (no pre-allocation of memory needed).
+    * Easy insertion and deletion from the front.
+    
+Disadvantages:
+    * Cannot traverse backward.
+    * Accessing a specific element takes O(n) time.
 
 """
-* travelling function
-* insert new node
-* delete node
-
-"""
-
-class singlyNode:
-    
-    def __init__(self, val, next = None):
+class SinglyNode:
+    def __init__(self, val):
         self.val = val
-        self.next = next
-        
-    def __str__(self):
-        return str(self.val)
-class singlyNode1:
-    
-    def __init__(self, val, next = None):
-        self.val = val
-        self.next = next
-        
-    def __str__(self):
-        return str(self.val)
+        self.next = None
 
-class LinkedList():
-    
-    def __init__(self, head = None, prev = None):
-        self.head = head
-        self.prev = prev
-    
-    def printHead(self):
-        print(self.head)
-        
-    def travell(self, head):
-        temp = head
-        while temp:
-            print(temp.val, end=" -> ")
-            temp = temp.next
-            
-    def last(self):
-        temp = self.head
-        while temp.next:
-            temp = temp.next
-        return temp.val
-    
-    def insertBig(self, val):
-        new_node = singlyNode(val)
-        temp = self.head
-        
-        new_node.next = temp
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert_at_beginning(self, val):
+        new_node = SinglyNode(val)
+        new_node.next = self.head
         self.head = new_node
-        
-    def insertLast(self, val):
-        
-        new_node = singlyNode(val)
+
+    def insert_at_end(self, val):
+        new_node = SinglyNode(val)
+        if not self.head:
+            self.head = new_node
+            return
         temp = self.head
-        
         while temp.next:
             temp = temp.next
         temp.next = new_node
-        
-    def insertafter(self, cuval, val):
-        new_node = singlyNode(val)
+
+    def delete_node(self, key):
         temp = self.head
-        while temp.next:
-            if temp.val == cuval:
-                next_val = temp.next
-                temp.next = new_node
-                new_node.next = next_val
+        if temp and temp.val == key:
+            self.head = temp.next
+            temp = None
+            return
+        prev = None
+        while temp and temp.val != key:
+            prev = temp
             temp = temp.next
-            
-    def reverse(self, head):
-        current = head
-        prev = self.prev
-        
+        if temp is None:
+            print("Key not found")
+            return
+        prev.next = temp.next
+        temp = None
+
+    def search(self, key):
+        temp = self.head
+        while temp:
+            if temp.val == key:
+                return True
+            temp = temp.next
+        return False
+
+    def reverse(self):
+        prev = None
+        current = self.head
         while current:
-            nextnode = current.next
+            next_node = current.next
             current.next = prev
             prev = current
-            current = nextnode
-        return prev
-        
-        
-    def ditectCycle(self, head):
-        slow = head
-        fast = head
-        
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-            
-            if slow == fast:
+            current = next_node
+        self.head = prev
+
+    def traverse(self):
+        temp = self.head
+        while temp:
+            print(temp.val, end=" -> ")
+            temp = temp.next
+        print("NULL")
+
+sll = SinglyLinkedList()
+sll.insert_at_beginning(3)
+sll.insert_at_end(5)
+sll.insert_at_beginning(1)
+sll.traverse()  # Output: 1 -> 3 -> 5 -> NULL
+sll.reverse()
+sll.traverse()  # Output: 5 -> 3 -> 1 -> NULL
+print(sll.search(3))  # Output: True
+sll.delete_node(3)
+sll.traverse()  # Output: 5 -> 1 -> NULL
+
+
+"""
+Doubly Linked List:
+------------------------
+A Doubly Linked List is a data structure where each node contains:
+    Data: The value stored in the node.
+    Next Pointer: A reference to the next node in the sequence.
+    Previous Pointer: A reference to the previous node in the sequence.
+    
+Advantages:
+    * Allows traversal in both directions.
+    * Easier to delete nodes when compared to singly linked lists.
+
+Disadvantages:
+    * Requires more memory for the extra pointer.
+    * Slightly more complex to implement.
+
+"""
+
+class DoublyNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert_at_beginning(self, val):
+        new_node = DoublyNode(val)
+        if not self.head:
+            self.head = new_node
+            return
+        new_node.next = self.head
+        self.head.prev = new_node
+        self.head = new_node
+
+    def insert_at_end(self, val):
+        new_node = DoublyNode(val)
+        if not self.head:
+            self.head = new_node
+            return
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = new_node
+        new_node.prev = temp
+
+    def delete_node(self, key):
+        temp = self.head
+        while temp:
+            if temp.val == key:
+                if temp.prev:
+                    temp.prev.next = temp.next
+                if temp.next:
+                    temp.next.prev = temp.prev
+                if temp == self.head:
+                    self.head = temp.next
+                temp = None
+                return
+            temp = temp.next
+        print("Key not found")
+
+    def search(self, key):
+        temp = self.head
+        while temp:
+            if temp.val == key:
                 return True
+            temp = temp.next
         return False
-    
-    """
-    1) 1-2-5-7
-    2) 3-4-6-8
-    res) 1-2-3-4-5-6-7-8
-    """   
-    def merge(self, head1,head2):
-        temp1 = head1
-        temp2 = head2
-        prev = None
-        
-        while temp1 and temp2:
-            if temp2.val > temp1.val:
-                prev = temp1
-                temp1 = temp1.next
-            else:
-                cur = temp1
-                cur2 = temp2
-                prev.next = cur2
-                cur2.next = cur
-                temp2 = temp2.next
-        
 
+    def traverse_forward(self):
+        temp = self.head
+        while temp:
+            print(temp.val, end=" -> ")
+            temp = temp.next
+        print("NULL")
 
-Head = singlyNode(1)
-A = singlyNode(2)
-B = singlyNode(5)
-C = singlyNode(7)
+    def traverse_backward(self):
+        temp = self.head
+        while temp and temp.next:
+            temp = temp.next
+        while temp:
+            print(temp.val, end=" -> ")
+            temp = temp.prev
+        print("NULL")
 
-Head.next = A
-A.next = B
-B.next = C
-
-Head1 = singlyNode(3)
-E = singlyNode(4)
-F = singlyNode(6)
-G = singlyNode(8)
-
-Head1.next = E
-E.next = F
-F.next = G
-
-
-l = LinkedList(Head)
-l.merge(Head,Head1)
-
-# print(l.ditectCycle(Head))
-l.travell(Head)
-# l.insertafter(2,3)
-# new_head = l.reverse(Head)
-# l.travell(new_head)
-
-
-
-    
-
-
+dll = DoublyLinkedList()
+dll.insert_at_beginning(3)
+dll.insert_at_end(5)
+dll.insert_at_beginning(1)
+dll.traverse_forward()  # Output: 1 -> 3 -> 5 -> NULL
+dll.traverse_backward()  # Output: 5 -> 3 -> 1 -> NULL
+print(dll.search(3))  # Output: True
+dll.delete_node(3)
+dll.traverse_forward()  # Output: 1 -> 5 -> NULL
