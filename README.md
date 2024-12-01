@@ -27,13 +27,11 @@ A linked list is a linear data structure where elements (nodes) are stored non-c
 ### Stacks
 Stacks follow the Last In, First Out (LIFO) principle. They are used in algorithms like depth-first search (DFS) and for expression evaluation.
 
-- **Notes**: [stack_notes.md](./stack_notes.md)
-- **Code**: [stack.py](./stack.py)
+- **Note & Code**: [stack.py](./stacks_and_queues.py.py)
 
 ### Queues
 Queues use the First In, First Out (FIFO) principle. They are useful in scenarios like scheduling tasks or managing requests.
 
-- **Notes**: [queue_notes.md](./queue_notes.md)
-- **Code**: [queue.py](./queue.py)
+- **Note & Code**: [queue.py](./stacks_and_queues.py.py)
 
 
