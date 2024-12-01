@@ -22,8 +22,7 @@ This repository aims to provide a comprehensive learning resource for **Data Str
 ### Linked Lists
 A linked list is a linear data structure where elements (nodes) are stored non-contiguously. Each node contains a reference to the next node.
 
-- **Notes**: [linked_list_notes.md](./linked_list_notes.md)
-- **Code**: [linked_list.py](./linked_list.py)
+- **Note & Code**: [linked_list.py](./linked_list.py)
 
 ### Stacks
 Stacks follow the Last In, First Out (LIFO) principle. They are used in algorithms like depth-first search (DFS) and for expression evaluation.
